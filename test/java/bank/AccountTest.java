@@ -72,10 +72,17 @@ public class AccountTest {
     @Test
     public void ifOneTransactionDoneItShouldGiveOneTransactionInListOfDeduction() {
         List<Transaction> expectedTransactions = new ArrayList<>();
-        Account danny = new Account("danny", "2", 100, TODAY);
+        Account danny = new Account("danny", "2", 1000, TODAY);
         Transaction debitTransaction = new Transaction("2", TODAY, 100);
         danny.debit(100,TODAY);
         expectedTransactions.add(debitTransaction);
+        assertEquals(expectedTransactions, danny.getPassbook());
+    }
+    @Test
+    public void ifOneTransactionDoneItShouldNotGiveTransactionInListOfDeduction() {
+        List<Transaction> expectedTransactions = new ArrayList<>();
+        Account danny = new Account("danny", "2", 0, TODAY);
+        danny.debit(100,TODAY);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
 
