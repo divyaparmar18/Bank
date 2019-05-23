@@ -11,6 +11,7 @@ public class Account {
     private Date openingDate;
     public final int RATE_OF_INTEREST_PER_ANNUM = 10;
     private final List<Transaction> transactions = new ArrayList<>();
+    private static int counter = 0;
 
     @Override
     public String toString() {
@@ -26,6 +27,7 @@ public class Account {
         this.number = number;
         this.balance = balance;
         this.openingDate = openingDate;
+        this.counter++;
     }
 
     public void credit(double amount, Date creditDate) {
@@ -49,6 +51,10 @@ public class Account {
     }
     public List<Transaction> getPassbook(){
         return transactions;
+    }
+
+    public static int getCounter(){
+        return counter;
     }
 
 }

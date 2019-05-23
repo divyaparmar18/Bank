@@ -98,4 +98,12 @@ public class AccountTest {
         assertEquals(expectedTransactions, danny.getPassbook());
     }
 
+    @Test
+    public void itShouldGiveTheNumberOfAccountsWithMultipleAccounts(){
+        Account danny = new Account("danny","2",100,TODAY);
+        Account zoyaa = new Account("zoyaa","3",100,TODAY);
+        assertEquals(2,Account.getCounter());
+    }
+
+
 }
