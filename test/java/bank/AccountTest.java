@@ -79,10 +79,22 @@ public class AccountTest {
         assertEquals(expectedTransactions, danny.getPassbook());
     }
     @Test
-    public void ifOneTransactionDoneItShouldNotGiveTransactionInListOfDeduction() {
+    public void ifTheAmountToBeDeductedIsMoreThanBalanceItShouldGiveNoTGiveTransaction() {
         List<Transaction> expectedTransactions = new ArrayList<>();
         Account danny = new Account("danny", "2", 0, TODAY);
         danny.debit(100,TODAY);
+        assertEquals(expectedTransactions, danny.getPassbook());
+    }
+    @Test
+    public void ifMultipleTransactionsAreDoneItShouldGiveAllTheTransactions() {
+        List<Transaction> expectedTransactions = new ArrayList<>();
+        Account danny = new Account("danny", "2", 1000, TODAY);
+        Transaction debitTransaction = new Transaction("2", TODAY, 10);
+        Transaction creditTransaction = new Transaction("2",TODAY,100);
+        danny.credit(100,TODAY);
+        danny.debit(10,TODAY);
+        expectedTransactions.add(creditTransaction);
+        expectedTransactions.add(debitTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
 
