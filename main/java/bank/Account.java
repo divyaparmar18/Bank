@@ -42,7 +42,7 @@ public class Account {
 
     public void debit(double amount, Date debitDate) {
         if (amount <= this.balance) {
-            Transaction debit = new Transaction(number,debitDate,amount);
+            Transaction debit = new Transaction(number,debitDate,-amount);
             transactions.add(debit);
             this.balance -= amount;
         }

@@ -74,7 +74,7 @@ public class AccountTest {
         List<Transaction> expectedTransactions = new ArrayList<>();
         Account danny = new Account("danny", "2", 1000, TODAY);
         Transaction debitTransaction = new Transaction("2", TODAY, 100);
-        danny.debit(100,TODAY);
+        danny.debit(-100,TODAY);
         expectedTransactions.add(debitTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
@@ -92,7 +92,7 @@ public class AccountTest {
         Transaction debitTransaction = new Transaction("2", TODAY, 10);
         Transaction creditTransaction = new Transaction("2",TODAY,100);
         danny.credit(100,TODAY);
-        danny.debit(10,TODAY);
+        danny.debit(-10,TODAY);
         expectedTransactions.add(creditTransaction);
         expectedTransactions.add(debitTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
