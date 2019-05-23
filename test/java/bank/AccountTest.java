@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class AccountTest {
 
@@ -64,11 +63,20 @@ public class AccountTest {
     @Test
     public void ifOneTransactionDoneItShouldGiveOneTransactionInList() {
         List<Transaction> expectedTransactions = new ArrayList<>();
-        Account danny = new Account("danny", "2566766767", 100, TODAY);
-        Transaction credit = new Transaction("2566766767", TODAY, 500);
+        Account danny = new Account("danny", "1", 100, TODAY);
+        Transaction creditTransaction = new Transaction("1", TODAY, 100);
         danny.credit(100, TODAY);
-        expectedTransactions.add(credit);
-        assertEquals(expectedTransactions.get(0), danny.getPassbook().get(0));
+        expectedTransactions.add(creditTransaction);
+        assertEquals(expectedTransactions, danny.getPassbook());
+    }
+    @Test
+    public void ifOneTransactionDoneItShouldGiveOneTransactionInListOfDeduction() {
+        List<Transaction> expectedTransactions = new ArrayList<>();
+        Account danny = new Account("danny", "2", 100, TODAY);
+        Transaction debitTransaction = new Transaction("2", TODAY, 100);
+        danny.debit(100,TODAY);
+        expectedTransactions.add(debitTransaction);
+        assertEquals(expectedTransactions, danny.getPassbook());
     }
 
 }

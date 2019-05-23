@@ -24,5 +24,4 @@ public class Transaction {
                 Objects.equals(transactionDate, that.transactionDate);
     }
 
-
 }

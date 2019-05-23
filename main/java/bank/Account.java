@@ -28,10 +28,10 @@ public class Account {
         this.openingDate = openingDate;
     }
 
-    public void credit(double balance, Date creditDate) {
-        Transaction credit = new Transaction("2566766767",creditDate,500);
+    public void credit(double amount, Date creditDate) {
+        Transaction credit = new Transaction(number,creditDate,amount);
         transactions.add(credit);
-        this.balance += balance;
+        this.balance += amount;
 
     }
     public double getBalance(int year){
@@ -41,6 +41,8 @@ public class Account {
     }
 
     public void debit(double amount, Date debitDate) {
+        Transaction debit = new Transaction(number,debitDate,amount);
+        transactions.add(debit);
         if (amount < this.balance) {
             this.balance -= amount;
         }
