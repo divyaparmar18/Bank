@@ -69,44 +69,56 @@ public class AccountTest {
         expectedTransactions.add(creditTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
+
     @Test
     public void ifOneTransactionDoneItShouldGiveOneTransactionInListOfDeduction() {
         List<Transaction> expectedTransactions = new ArrayList<>();
         Account danny = new Account("danny", "2", 1000);
         Transaction debitTransaction = new Transaction("2", TODAY, 100);
-        danny.debit(-100,TODAY);
+        danny.debit(-100, TODAY);
         expectedTransactions.add(debitTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
+
     @Test
     public void ifTheAmountToBeDeductedIsMoreThanBalanceItShouldGiveNoTGiveTransaction() {
         List<Transaction> expectedTransactions = new ArrayList<>();
         Account danny = new Account("danny", "2", 0);
-        danny.debit(100,TODAY);
+        danny.debit(100, TODAY);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
+
     @Test
     public void ifMultipleTransactionsAreDoneItShouldGiveAllTheTransactions() {
         List<Transaction> expectedTransactions = new ArrayList<>();
         Account danny = new Account("danny", "2", 1000);
         Transaction debitTransaction = new Transaction("2", TODAY, 10);
-        Transaction creditTransaction = new Transaction("2",TODAY,100);
-        danny.credit(100,TODAY);
-        danny.debit(-10,TODAY);
+        Transaction creditTransaction = new Transaction("2", TODAY, 100);
+        danny.credit(100, TODAY);
+        danny.debit(-10, TODAY);
         expectedTransactions.add(creditTransaction);
         expectedTransactions.add(debitTransaction);
         assertEquals(expectedTransactions, danny.getPassbook());
     }
+
     @Test
     public void test() {
         Account danny = new Account("danny", "2", 100);
-        danny.credit(10,TODAY).debit(10,TODAY);
-        assertEquals(100, danny.getBalance(),1);
+        danny.credit(10, TODAY).debit(10, TODAY);
+        assertEquals(100, danny.getBalance(), 1);
     }
+
     @Test
     public void shouldBeAbleToDOMultipleCredits() {
         Account danny = new Account("danny", "2", 100);
-        danny.credit(10,TODAY).credit(10,TODAY).credit(20,TODAY);
-        assertEquals(140, danny.getBalance(),1);
+        danny.credit(10, TODAY).credit(10, TODAY).credit(20, TODAY);
+        assertEquals(140, danny.getBalance(), 1);
+    }
+
+    @Test
+    public void itShouldDebitAndCredit() {
+        Account danny = new Account("danny", "2", 100);
+        danny.credit(10, TODAY).debit(10, TODAY).credit(10, TODAY);
+        assertEquals(110, danny.getBalance(), 1);
     }
 }

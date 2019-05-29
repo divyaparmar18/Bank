@@ -41,12 +41,13 @@ public class Account {
         return netBalance;
     }
 
-    public void debit(double amount, Date debitDate) {
+    public Account debit(double amount, Date debitDate) {
         if (amount <= this.balance) {
             Transaction debit = new Transaction(number,debitDate,-amount);
             transactions.add(debit);
             this.balance -= amount;
         }
+        return this;
     }
     public List<Transaction> getPassbook() {
         return transactions;
